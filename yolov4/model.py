@@ -20,11 +20,11 @@ def model_info(model, verbose=False):
     n_p = sum(x.numel() for x in model.parameters())  # number parameters
     n_g = sum(x.numel() for x in model.parameters() if x.requires_grad)  # number gradients
     if verbose:
-        print('%5s %40s %9s %12s %20s %10s %10s' % ('layer', 'name', 'gradient', 'parameters', 'shape', 'mu', 'sigma'))
+        # print('%5s %40s %9s %12s %20s %10s %10s' % ('layer', 'name', 'gradient', 'parameters', 'shape', 'mu', 'sigma'))
         for i, (name, p) in enumerate(model.named_parameters()):
             name = name.replace('module_list.', '')
-            print('%5g %40s %9s %12g %20s %10.3g %10.3g' %
-                  (i, name, p.requires_grad, p.numel(), list(p.shape), p.mean(), p.std()))
+            # print('%5g %40s %9s %12g %20s %10.3g %10.3g' %
+                #   (i, name, p.requires_grad, p.numel(), list(p.shape), p.mean(), p.std()))
 
     try:  # FLOPS
         from thop import profile
@@ -33,7 +33,7 @@ def model_info(model, verbose=False):
     except:
         fs = ''
 
-    print('Model Summary: %g layers, %g parameters, %g gradients%s' % (len(list(model.parameters())), n_p, n_g, fs))
+    # print('Model Summary: %g layers, %g parameters, %g gradients%s' % (len(list(model.parameters())), n_p, n_g, fs))
 
 class FeatureConcat(nn.Module):
     def __init__(self, layers):
@@ -183,7 +183,8 @@ def create_modules(module_defs, img_size, cfg):
             #     print('WARNING: smart bias initialization failure.')
 
         else:
-            print('Warning: Unrecognized Layer Type: ' + mdef['type'])
+            # print('Warning: Unrecognized Layer Type: ' + mdef['type'])
+            pass
 
         # Register module list and number of output filters
         module_list.append(modules)
@@ -337,7 +338,7 @@ class Darknet(nn.Module):
         img_size = x.shape[-2:]  # height, width
         yolo_out, out = [], []
         if verbose:
-            print('0', x.shape)
+            # print('0', x.shape)
             str = ''
 
         # Augment images (inference and test only)
@@ -364,7 +365,7 @@ class Darknet(nn.Module):
 
             out.append(x if self.routs[i] else [])
             if verbose:
-                print('%g/%g %s -' % (i, len(self.module_list), name), list(x.shape), str)
+                # print('%g/%g %s -' % (i, len(self.module_list), name), list(x.shape), str)
                 str = ''
 
         if self.training:  # train
@@ -385,7 +386,7 @@ class Darknet(nn.Module):
 
     def fuse(self):
         # Fuse Conv2d + BatchNorm2d layers throughout model
-        print('Fusing layers...')
+        # print('Fusing layers...')
         fused_list = nn.ModuleList()
         for a in list(self.children())[0]:
             if isinstance(a, nn.Sequential):
@@ -496,7 +497,8 @@ def convert(cfg='cfg/yolov3-spp.cfg', weights='weights/yolov3-spp.weights', save
         model.load_state_dict(ckpt['model'], strict=False)
         save_weights(model, path=saveto, cutoff=-1)
     except KeyError as e:
-        print(e)
+        # print(e)
+        pass
 
 def attempt_download(weights):
     # Attempt to download pretrained weights if not found locally
@@ -511,7 +513,7 @@ def attempt_download(weights):
             r = gdrive_download(id=d[file], name=weights)
         else:  # download from pjreddie.com
             url = 'https://pjreddie.com/media/files/' + file
-            print('Downloading ' + url)
+            # print('Downloading ' + url)
             r = os.system('curl -f ' + url + ' -o ' + weights)
 
         # Error check

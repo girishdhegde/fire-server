@@ -82,7 +82,7 @@ def detect(model, weights, source, out, imgsz, conf_thres, iou_thres, cfg,
                         plot_fire(xyxy, im0, clas=cls, label=label, color=colors[int(cls)], line_thickness=2)
 
             # Print time (inference + NMS)
-            print('%sDone. (%.3fs)' % (s, t2 - t1))
+            # print('%sDone. (%.3fs)' % (s, t2 - t1))
 
             # Stream results
             # cv2.imshow(p, im0)
@@ -107,9 +107,10 @@ def detect(model, weights, source, out, imgsz, conf_thres, iou_thres, cfg,
                     vid_writer.write(im0)
 
     if save_img:
-        print('Results saved to %s' % Path(out))
+        pass
+        # print('Results saved to %s' % Path(out))
 
-    print('Done. (%.3fs)' % (time.time() - t0))
+    # print('Done. (%.3fs)' % (time.time() - t0))
 
 
 # if __name__ == '__main__':
