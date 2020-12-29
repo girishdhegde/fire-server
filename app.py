@@ -8,7 +8,7 @@ from yolov4.demo import detect
 from yolov4.model import *
 
 
-weights = 'yolov4/weights/yolov4-pacsp.pt'
+weights = 'yolov4/yolov4-pacsp.pt'
 # weights = '../yolov4/weights/pacsp/fire3.pt'
 source  = 'static'
 out  = 'static/outputs'
@@ -62,17 +62,17 @@ def home():
         # cv2.destroyAllWindows()
 
         return render_template("upload.html", img1=path1, img2=path2)
-@app.after_request
-def add_header(r):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    r.headers["Pragma"] = "no-cache"
-    r.headers["Expires"] = "0"
-    r.headers['Cache-Control'] = 'public, max-age=0'
-    return r
+# @app.after_request
+# def add_header(r):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+#     r.headers["Pragma"] = "no-cache"
+#     r.headers["Expires"] = "0"
+#     r.headers['Cache-Control'] = 'public, max-age=0'
+#     return r
 
 if __name__ == "__main__":
     app.run(debug=True)
