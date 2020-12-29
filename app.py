@@ -23,7 +23,7 @@ device = torch.device('cpu')
 # torch.hub.download_url_to_file('https://www.dropbox.com/s/jlep1pe8xt9quxf/fire3.pt?dl=1', weights)
 
 # # Load model
-# model = Darknet(cfg, imgsz)
+model = Darknet(cfg, imgsz)
 # try:
 #     model.load_state_dict(torch.load(weights, map_location=device))
 # except:
