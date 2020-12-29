@@ -62,6 +62,7 @@ def home():
         # cv2.destroyAllWindows()
 
         return render_template("upload.html", img1=path1, img2=path2)
+'''
 @app.after_request
 def add_header(r):
     """
@@ -73,6 +74,6 @@ def add_header(r):
     r.headers["Expires"] = "0"
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
-
+'''
 if __name__ == "__main__":
     app.run(debug=False)
