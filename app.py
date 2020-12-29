@@ -9,7 +9,7 @@ from yolov4.model import *
 
 
 # weights = 'yolov4/weights/yolov4-pacsp.pt'
-# weights = '../yolov4/weights/pacsp/fire3.pt'
+weights = '../yolov4/weights/pacsp/fire3.pt'
 source  = 'static'
 out  = 'static/outputs'
 imgsz   = 448
