@@ -51,7 +51,7 @@ def home():
 
         return render_template("upload.html", img1=path1, img2=path2)
     
-@app.route('/mobile', methods=['GET', 'POST'])
+@app.route('/mobile/', methods=['GET', 'POST'])
 def mobile():
     if request.method == "GET":
         return render_template("index.html")
