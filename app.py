@@ -4,7 +4,7 @@ from yolov4.demo import detect
 from yolov4.model import Darknet
 
 # weights = 'yolov4/weights/yolov4-pacsp.pt'
-weights = './state.pt'
+weights = './pretrained.pt'
 # source  = 'static'
 # out  = 'static/outputs'
 imgsz   = 448
@@ -15,12 +15,12 @@ names = ['fire', 'smoke']
 colors = [(255, 30, 0), (50, 0, 255)]
 device = torch.device('cpu')
 
-# torch.hub.download_url_to_file('https://www.dropbox.com/s/a1puv47v6tmrk6j/weights.pt?dl=1', weights)
+torch.hub.download_url_to_file('https://www.dropbox.com/s/2f3jcqy2qxae4aj/pretrained.pt?dl=1', weights)
 
 # Load model
 model = Darknet(cfg, imgsz)
 
-# model.load_state_dict(torch.load(weights, map_location=device))
+model.load_state_dict(torch.load(weights, map_location=device))
 
 model.to(device).eval()
 
