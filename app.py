@@ -68,10 +68,8 @@ def mobile():
         f.save(path1)
 
         detect(model, path1, path2, imgsz, conf_thres, iou_thres, names, colors, device)
-        img = cv2.imread(path2) # reads the PIL image
-        retval, buffer = cv2.imencode('.jpg', img)
-        img_base64 = base64.b64encode(buffer)
-        return img_base64
+        with open(path2, "rb") as f:
+            return base64.b64encode(f.read())
     
 if __name__ == "__main__":
     app.run(debug=False)
