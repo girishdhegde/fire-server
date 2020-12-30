@@ -5,4 +5,3 @@ torchvision==0.8.2+cpu
 numpy==1.19.2
 flask==1.1.2
 gunicorn==20.0.4
-base64
