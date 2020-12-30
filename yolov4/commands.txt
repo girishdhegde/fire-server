@@ -1,1 +1,0 @@
-python demo.py --img-size 448 --cfg cfg/yolov4-pacsp.cfg --weights ../../yolov4/runs/evolve/weights/best.pt --name data/fire_smoke.names --conf-thres 0.35 --source ../inference/images --output ../inference/output
